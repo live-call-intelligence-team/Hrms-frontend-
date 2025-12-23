@@ -207,7 +207,7 @@ class CourseCard extends StatelessWidget {
                           Container(color: Colors.grey[200], child: const Center(child: Icon(Icons.image_not_supported))),
                     )
                   : Container(
-                      color: Colors.deepPurple.withOpacity(0.1),
+                      color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
                       child: const Center(child: Icon(Icons.book, size: 50, color: Colors.deepPurple)),
                     ),
             ),

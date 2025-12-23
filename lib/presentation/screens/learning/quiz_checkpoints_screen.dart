@@ -85,7 +85,7 @@ class _QuizCheckpointsScreenState extends State<QuizCheckpointsScreen> {
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                               decoration: BoxDecoration(
-                                color: Colors.orange.withOpacity(0.2),
+                                color: Theme.of(context).primaryColor.withValues(alpha: 0.1),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: const Text('Required', style: TextStyle(color: Colors.orange, fontSize: 10)),

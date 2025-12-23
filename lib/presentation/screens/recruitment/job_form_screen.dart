@@ -76,6 +76,7 @@ class _JobFormScreenState extends State<JobFormScreen> {
               Consumer<RecruitmentProvider>(
                 builder: (context, provider, child) {
                   return DropdownButtonFormField<int>(
+                    // ignore: deprecated_member_use
                     value: _selectedJobDescId,
                     decoration: const InputDecoration(labelText: 'Job Role (Description)', border: OutlineInputBorder()),
                     items: provider.jobDescriptions.map((desc) {
@@ -97,6 +98,7 @@ class _JobFormScreenState extends State<JobFormScreen> {
               ),
               const SizedBox(height: 16),
               DropdownButtonFormField<String>(
+                // ignore: deprecated_member_use
                 value: _selectedEmploymentType,
                 decoration: const InputDecoration(labelText: 'Employment Type', border: OutlineInputBorder()),
                 items: ['Full-time', 'Part-time', 'Contract', 'Internship']

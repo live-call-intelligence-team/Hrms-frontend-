@@ -57,7 +57,7 @@ class _QuizHistoryScreenState extends State<QuizHistoryScreen> {
               
               return ListTile(
                 leading: CircleAvatar(
-                  backgroundColor: isPassed ? AppTheme.successColor.withOpacity(0.1) : AppTheme.errorColor.withOpacity(0.1),
+                  backgroundColor: isPassed ? Colors.green.withValues(alpha: 0.1) : Colors.red.withValues(alpha: 0.1),
                   child: Icon(
                     isPassed ? Icons.check : Icons.close,
                     color: isPassed ? AppTheme.successColor : AppTheme.errorColor,

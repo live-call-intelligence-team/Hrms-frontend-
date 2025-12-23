@@ -53,7 +53,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                   provider.deleteNotification(note.id);
                 },
                 child: ListTile(
-                  tileColor: note.isRead ? null : Colors.blue.withOpacity(0.05),
+                  tileColor: note.isRead ? null : Theme.of(context).primaryColor.withValues(alpha: 0.1),
                   leading: CircleAvatar(
                     backgroundColor: note.isRead ? Colors.grey : Colors.blue,
                     radius: 5,

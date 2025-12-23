@@ -88,6 +88,7 @@ class _CandidateFormScreenState extends State<CandidateFormScreen> {
               Consumer<RecruitmentProvider>(
                 builder: (context, provider, child) {
                    return DropdownButtonFormField<int>(
+                     // ignore: deprecated_member_use
                      value: _selectedJobId,
                      decoration: const InputDecoration(labelText: 'Job Posting', border: OutlineInputBorder()),
                      items: provider.jobPostings.map((job) => DropdownMenuItem(
