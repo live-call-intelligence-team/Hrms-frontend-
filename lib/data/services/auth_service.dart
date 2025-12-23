@@ -50,13 +50,13 @@ class AuthService {
     try {
       final response = await _apiService.post(
         '/auth/login',
-        data: FormData.fromMap({
-          'username': email, // Backend expects 'username' field
+        data: {
+          'username': email,
           'password': password,
           'grant_type': 'password',
-        }),
+        },
         options: Options(
-          contentType: 'application/x-www-form-urlencoded',
+          contentType: Headers.formUrlEncodedContentType,
         ),
       );
 

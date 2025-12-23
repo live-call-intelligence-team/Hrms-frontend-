@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../state/providers/course_provider.dart';
+import '../../../state/providers/auth_provider.dart';
 import '../../../data/models/course_model.dart';
 import 'course_detail_screen.dart';
 
@@ -23,7 +24,10 @@ class _CoursesListScreenState extends State<CoursesListScreen> with SingleTicker
     // Fetch courses on init
     WidgetsBinding.instance.addPostFrameCallback((_) {
       context.read<CourseProvider>().fetchCourses();
-      context.read<CourseProvider>().fetchEnrolledCourses();
+      final authProvider = context.read<AuthProvider>();
+      if (authProvider.user != null) {
+        context.read<CourseProvider>().fetchEnrolledCourses(authProvider.user!.id);
+      }
     });
   }
 
@@ -126,7 +130,13 @@ class _CoursesListScreenState extends State<CoursesListScreen> with SingleTicker
         }
 
         return RefreshIndicator(
-          onRefresh: () => provider.fetchEnrolledCourses(),
+          onRefresh: () {
+             final authProvider = Provider.of<AuthProvider>(context, listen: false);
+             if (authProvider.user != null) {
+               return provider.fetchEnrolledCourses(authProvider.user!.id);
+             }
+             return Future.value();
+          },
           child: ListView.builder(
             padding: const EdgeInsets.all(8.0),
             itemCount: provider.enrolledCourses.length,

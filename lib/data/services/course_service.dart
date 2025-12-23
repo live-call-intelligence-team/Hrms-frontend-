@@ -43,19 +43,16 @@ class CourseService {
     }
   }
 
-  Future<List<CourseModel>> getEnrollments() async {
+  Future<List<CourseModel>> getEnrollments(int userId) async {
     try {
-      final response = await _apiService.get('/enrollments/');
+      final response = await _apiService.get('/enrollments/user/$userId');
       if (response.statusCode == 200) {
         final List<dynamic> data = response.data;
-        // Assuming enrollments returns a list of objects that contain 'course' or expands course details
-        // Adjust logic based on actual API response structure. 
-        // If enrollment returns {id, user_id, course: {...}}, we parse 'course'.
         return data.map((json) {
            if (json['course'] != null) {
              return CourseModel.fromJson(json['course']);
            }
-           // Fallback if structure is flat or different
+           // Should ideally not happen if backend is correct
            return CourseModel.fromJson(json);
         }).toList();
       }
