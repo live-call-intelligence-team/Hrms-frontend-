@@ -207,7 +207,17 @@ class DashboardScreen extends StatelessWidget {
                   },
                 ),
                 if (menus.isNotEmpty)
-                  ...menus.map((menu) => _buildMenuTile(context, menu))
+                  ...menus.map((menu) {
+                    final children = menu['children'] as List<dynamic>? ?? [];
+                    if (children.isNotEmpty) {
+                      return ExpansionTile(
+                        leading: Icon(_getMenuIcon(menu['icon'] as String?)),
+                        title: Text(menu['display_name'] ?? menu['name'] ?? ''),
+                        children: children.map((child) => _buildMenuTile(context, child)).toList(),
+                      );
+                    }
+                    return _buildMenuTile(context, menu);
+                  })
                 else ...[
                   ListTile(
                     leading: const Icon(Icons.people_outlined),
@@ -272,8 +282,21 @@ class DashboardScreen extends StatelessWidget {
       leading: Icon(_getMenuIcon(menu['icon'] as String?)),
       title: Text(menu['display_name'] ?? menu['name'] ?? ''),
       onTap: () {
-        Navigator.pop(context);
-        // Navigate based on menu route
+        Navigator.pop(context); // Close drawer
+        if (menu['route'] != null && (menu['route'] as String).isNotEmpty) {
+           // Handle known routes
+           final routeName = menu['route'] as String;
+           Navigator.pushNamed(context, routeName);
+        } else {
+           // Handle menus with children or unknown routes
+           if (menu['children'] != null && (menu['children'] as List).isNotEmpty) {
+             // For now, we don't have nested expansion implemented in this drawer view
+             // You might want to expand this tile or show a submenu
+             ScaffoldMessenger.of(context).showSnackBar(
+               SnackBar(content: Text('Please select a sub-menu for ${menu['display_name']}')),
+             );
+           }
+        }
       },
     );
   }

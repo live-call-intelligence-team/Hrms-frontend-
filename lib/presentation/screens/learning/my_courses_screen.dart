@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../state/providers/course_provider.dart';
+import '../../../state/providers/auth_provider.dart';
 import 'course_detail_screen.dart';
 
 class MyCoursesScreen extends StatefulWidget {
@@ -15,7 +16,10 @@ class _MyCoursesScreenState extends State<MyCoursesScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<CourseProvider>().fetchEnrolledCourses();
+      final authProvider = context.read<AuthProvider>();
+      if (authProvider.user != null) {
+        context.read<CourseProvider>().fetchEnrolledCourses(authProvider.user!.id);
+      }
     });
   }
 

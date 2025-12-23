@@ -30,13 +30,13 @@ class CourseProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> fetchEnrolledCourses() async {
+  Future<void> fetchEnrolledCourses(int userId) async {
     _isLoading = true;
     _error = null;
     notifyListeners();
 
     try {
-      _enrolledCourses = await _courseService.getEnrollments();
+      _enrolledCourses = await _courseService.getEnrollments(userId);
     } catch (e) {
       _error = e.toString();
     } finally {
