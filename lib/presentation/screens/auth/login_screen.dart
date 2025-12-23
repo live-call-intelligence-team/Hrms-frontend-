@@ -35,7 +35,8 @@ class _LoginScreenState extends State<LoginScreen> {
     if (!mounted) return;
 
     if (success) {
-      // Navigation will be handled by main.dart based on auth state
+      // Navigate to dashboard
+      Navigator.pushReplacementNamed(context, '/dashboard');
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -62,16 +63,27 @@ class _LoginScreenState extends State<LoginScreen> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     // Logo/Header
-                    Icon(
-                      Icons.business,
-                      size: 80,
-                      color: AppTheme.primaryColor,
+                    Center(
+                      child: Image.asset(
+                        'assets/images/logo.png',
+                        height: 120,
+                        errorBuilder: (context, error, stackTrace) {
+                          return Icon(
+                            Icons.business,
+                            size: 80,
+                            color: AppTheme.primaryColor,
+                          );
+                        },
+                      ),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 24),
                     Text(
-                      'HRMS',
+                      'Gannetz HR',
                       textAlign: TextAlign.center,
-                      style: Theme.of(context).textTheme.displaySmall,
+                      style: Theme.of(context).textTheme.displayMedium?.copyWith(
+                            color: AppTheme.primaryColor,
+                            fontWeight: FontWeight.bold,
+                          ),
                     ),
                     const SizedBox(height: 8),
                     Text(

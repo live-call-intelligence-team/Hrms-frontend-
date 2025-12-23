@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 /// App-wide theme configuration
 class AppTheme {
   // Colors
-  static const Color primaryColor = Color(0xFF6366F1); // Indigo
-  static const Color secondaryColor = Color(0xFF8B5CF6); // Purple
-  static const Color accentColor = Color(0xFF10B981); // Green
+  static const Color primaryColor = Color(0xFFFB8C00); // Gannetz Orange
+  static const Color secondaryColor = Color(0xFF212121); // Dark Gray
+  static const Color accentColor = Color(0xFF03A9F4); // Cyan Blue
   static const Color errorColor = Color(0xFFEF4444);
   static const Color warningColor = Color(0xFFF59E0B);
   static const Color successColor = Color(0xFF10B981);

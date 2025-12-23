@@ -3,9 +3,14 @@ import 'package:provider/provider.dart';
 
 import 'core/theme/app_theme.dart';
 import 'state/providers/auth_provider.dart';
+import 'state/providers/course_provider.dart';
+import 'state/providers/category_provider.dart';
+import 'state/providers/recruitment_provider.dart';
+import 'state/providers/notification_provider.dart';
 import 'presentation/screens/auth/login_screen.dart';
 import 'presentation/screens/auth/register_screen.dart';
 import 'presentation/screens/dashboard/dashboard_screen.dart';
+import 'presentation/screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,12 +24,16 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => CourseProvider()),
+        ChangeNotifierProvider(create: (_) => CategoryProvider()),
+        ChangeNotifierProvider(create: (_) => RecruitmentProvider()),
+        ChangeNotifierProvider(create: (_) => NotificationProvider()),
       ],
       child: MaterialApp(
         title: 'HRMS Frontend',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
-        home: const AppInitializer(),
+        home: const SplashScreen(),
         routes: {
           '/login': (context) => const LoginScreen(),
           '/register': (context) => const RegisterScreen(),

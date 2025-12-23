@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../state/providers/auth_provider.dart';
 import '../../../core/theme/app_theme.dart';
+import '../learning/courses_list_screen.dart';
+import '../recruitment/job_postings_screen.dart';
+import '../recruitment/job_descriptions_screen.dart';
+import '../recruitment/candidates_list_screen.dart';
+import '../notifications/notifications_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
@@ -19,7 +24,9 @@ class DashboardScreen extends StatelessWidget {
             actions: [
               IconButton(
                 icon: const Icon(Icons.notifications_outlined),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => const NotificationsScreen()));
+                },
               ),
               PopupMenuButton(
                 icon: CircleAvatar(
@@ -215,7 +222,10 @@ class DashboardScreen extends StatelessWidget {
                     title: const Text('Courses'),
                     onTap: () {
                       Navigator.pop(context);
-                      // Navigate to courses
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const CoursesListScreen()),
+                      );
                     },
                   ),
                   ListTile(
@@ -223,7 +233,21 @@ class DashboardScreen extends StatelessWidget {
                     title: const Text('Recruitment'),
                     onTap: () {
                       Navigator.pop(context);
-                      // Navigate to recruitment
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const JobPostingsScreen()),
+                      );
+                    },
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.description),
+                    title: const Text('Job Descriptions'),
+                    onTap: () {
+                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const JobDescriptionsScreen()),
+                      );
                     },
                   ),
                   ListTile(

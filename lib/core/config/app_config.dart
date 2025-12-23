@@ -1,6 +1,9 @@
 class AppConfig {
   // API Configuration
-  static const String apiBaseUrl = 'http://localhost:8000';
+  static const String apiBaseUrl = String.fromEnvironment(
+    'API_URL',
+    defaultValue: 'https://hrms-backend-production-501b.up.railway.app',
+  );
   
   // App Info
   static const String appName = 'HRMS';
