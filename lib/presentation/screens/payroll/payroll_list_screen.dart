@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../../../state/providers/payroll_provider.dart';
 import '../../../data/models/payroll_models.dart';
 import 'package:intl/intl.dart';
-import 'package:go_router/go_router.dart';
+
 
 class PayrollListScreen extends StatefulWidget {
   const PayrollListScreen({super.key});
@@ -160,7 +160,10 @@ class _PayrollListScreenState extends State<PayrollListScreen> {
                              children: [
                                  IconButton(
                                      icon: const Icon(Icons.visibility, color: Colors.blue), 
-                                     onPressed: () => context.push('/payslip-view', extra: e.id)
+                                     onPressed: () => 
+                                     // Navigate using Navigator
+                                     Navigator.pushNamed(context, '/payslip-view', arguments: e.id)
+
                                  ),
                                  if (e.status != 'Paid')
                                      IconButton(

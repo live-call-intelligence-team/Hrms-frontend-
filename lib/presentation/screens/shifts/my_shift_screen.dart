@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../../../state/providers/shift_provider.dart';
 import '../../../data/models/shift_models.dart';
 import 'package:table_calendar/table_calendar.dart';
-import 'package:go_router/go_router.dart';
+
 
 class MyShiftScreen extends StatefulWidget {
   const MyShiftScreen({super.key});
@@ -33,7 +33,7 @@ class _MyShiftScreenState extends State<MyShiftScreen> {
         actions: [
             TextButton.icon(
                 onPressed: () {
-                    context.push('/shift-change-requests');
+                    Navigator.pushNamed(context, '/shift-change-requests');
                 }, 
                 icon: const Icon(Icons.swap_horiz, color: Colors.white), 
                 label: const Text("Requests", style: TextStyle(color: Colors.white))
@@ -131,6 +131,6 @@ class _MyShiftScreenState extends State<MyShiftScreen> {
        
        // Actually Screen 12 says: "Employee: Request form...". So maybe Screen 12 handles the form.
        // Let's navigate there.
-       context.push('/shift-change-requests', extra: userShift); 
+       Navigator.pushNamed(context, '/shift-change-requests', arguments: userShift); 
   }
 }

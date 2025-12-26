@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../state/providers/notification_provider.dart';
 import '../../../data/models/notification_model.dart';
-import 'package:go_router/go_router.dart';
+
 
 class NotificationsScreen extends StatefulWidget {
   const NotificationsScreen({super.key});
@@ -113,7 +113,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> with SingleTi
                           ],
                       ),
                       onTap: () {
-                          context.push('/notification-detail', extra: item);
+                          Navigator.pushNamed(context, '/notification-detail', arguments: item);
                       },
                   ),
               );
